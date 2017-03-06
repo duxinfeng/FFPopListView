@@ -13,7 +13,6 @@
 
 @interface FFPopListView ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray *dataarray;
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
 
@@ -130,7 +129,7 @@
 
     self.selectedIndexPath = indexPath;
     
-    self.didSelectBlock(tableView,indexPath);
+    self.didSelectBlock(self,indexPath);
     
     [self dismiss];
 }
@@ -168,7 +167,6 @@
             break;
         }
     }
-    
     
     self.transform = CGAffineTransformMakeScale(1.3, 1.3);
     self.alpha = 0;

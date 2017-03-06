@@ -10,12 +10,13 @@
 
 @class FFPopListView;
 
-typedef void(^FFPopListViewDidSelectBlock)(UITableView *tablewView,NSIndexPath *indexPath);
+typedef void(^FFPopListViewDidSelectBlock)(FFPopListView *popListView,NSIndexPath *indexPath);
 
 
 @interface FFPopListView : UIView
 
 @property(nonatomic,copy) FFPopListViewDidSelectBlock didSelectBlock;
+@property (nonatomic,strong) UITableView *tableView;
 
 @property(nonatomic) CGFloat left;
 @property(nonatomic) CGFloat top;
