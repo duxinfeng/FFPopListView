@@ -2,7 +2,7 @@
 //  FFPopListView.m
 //  FFVideo
 //
-//  Created by HD on 17/3/6.
+//  Created by Xinfeng Du on 17/3/6.
 //  Copyright © 2017年 http://duxinfeng.com. All rights reserved.
 //
 
@@ -13,22 +13,19 @@
 
 @interface FFPopListView ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,strong) UIImageView * leftImageView;
+@property (nonatomic,strong) UIImageView * rightImageView;
 @property (nonatomic,strong) NSArray *dataarray;
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
-
 @property (nonatomic,copy) NSString *selectedText;
 @property (nonatomic,copy) NSString *title;
-
 @property (nonatomic) CGFloat cellHeight;
 @property (nonatomic) CGFloat headHeight;
 
-@property (nonatomic,strong) UIImageView * leftImageView;
-@property (nonatomic,strong) UIImageView * rightImageView;
 @end
 
 
 @implementation FFPopListView
-
 
 - (instancetype)initWithTitle:(NSString *)title dataSource:(NSArray *)dataarray selectedText:(NSString *)selectedText didSelectBlock:(FFPopListViewDidSelectBlock)didSelectBlock
 {
@@ -52,8 +49,6 @@
         [self addSubview:self.leftImageView];
         [self addSubview:self.rightImageView];
         
-      
-        
     }
     return self;
     
@@ -62,7 +57,7 @@
 - (void)defalutInit
 {
     self.left = 20;
-    self.top = 50;
+    self.top = 80;
     self.cellHeight = 44.f;
     self.headHeight = 60.f;
     self.backgroundColor = [UIColor colorWithRed:.16 green:.17 blue:.21 alpha:.5];
@@ -196,11 +191,10 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.layer.cornerRadius = 15;
+        _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }
-
-
 
 - (UIImageView *)leftImageView
 {
@@ -222,7 +216,6 @@
 @end
 
 
-
 @interface FFPopListViewCell ()
 
 
@@ -236,22 +229,39 @@
     
     if (self) {
         
-        CGFloat padding = 10;
-        
-        self.selectImageView = [[UIImageView alloc] init];
-        self.selectImageView.image = [UIImage imageNamed:@"ff_cell_select_normal"];
-        self.selectImageView.frame = CGRectMake(self.frame.size.width-self.selectImageView.image.size.width+5, (self.frame.size.height - self.selectImageView.image.size.height)/2, self.selectImageView.image.size.width, self.selectImageView.image.size.height);
         [self.contentView addSubview:self.selectImageView];
-        
-        self.contentLabel = [[UILabel alloc] init];
-        self.contentLabel.frame = CGRectMake(padding,0,self.frame.size.width - self.selectImageView.frame.size.width - padding*2,self.frame.size.height);
         [self.contentView addSubview:self.contentLabel];
         
-
     }
 
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+   
+    CGFloat padding = 10;
+
+    self.selectImageView.frame = CGRectMake(self.frame.size.width-self.selectImageView.image.size.width-padding, (self.frame.size.height - self.selectImageView.image.size.height)/2, self.selectImageView.image.size.width, self.selectImageView.image.size.height);
+    self.contentLabel.frame = CGRectMake(padding,0,self.frame.size.width - self.selectImageView.frame.size.width - padding*2,self.frame.size.height);
+}
+
+- (UIImageView *)selectImageView
+{
+    if (!_selectImageView) {
+        _selectImageView = [[UIImageView alloc] init];
+        _selectImageView.image = [UIImage imageNamed:@"ff_cell_select_normal"];
+    }
+    return _selectImageView;
+}
+
+- (UILabel *)contentLabel
+{
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+    }
+    return _contentLabel;
+}
 
 @end

@@ -2,7 +2,7 @@
 //  FFPopListView.h
 //  FFVideo
 //
-//  Created by HD on 17/3/6.
+//  Created by Xinfeng Du on 17/3/6.
 //  Copyright © 2017年 http://duxinfeng.com. All rights reserved.
 //
 
@@ -12,14 +12,12 @@
 
 typedef void(^FFPopListViewDidSelectBlock)(FFPopListView *popListView,NSIndexPath *indexPath);
 
-
 @interface FFPopListView : UIView
 
-@property(nonatomic,copy) FFPopListViewDidSelectBlock didSelectBlock;
+@property (nonatomic,copy) FFPopListViewDidSelectBlock didSelectBlock;
 @property (nonatomic,strong) UITableView *tableView;
-
-@property(nonatomic) CGFloat left;
-@property(nonatomic) CGFloat top;
+@property (nonatomic) CGFloat left;
+@property (nonatomic) CGFloat top;
 
 - (instancetype)initWithTitle:(NSString *)title dataSource:(NSArray *)dataarray selectedText:(NSString *)selectedText didSelectBlock:(FFPopListViewDidSelectBlock)didSelectBlock;
 
@@ -27,7 +25,6 @@ typedef void(^FFPopListViewDidSelectBlock)(FFPopListView *popListView,NSIndexPat
 - (void)dismiss;
 
 @end
-
 
 @interface FFPopListViewCell : UITableViewCell
 
