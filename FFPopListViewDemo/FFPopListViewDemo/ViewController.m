@@ -21,7 +21,8 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"show" forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 120, self.view.frame.size.width, 100);
+    [button setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 200, self.view.frame.size.width, 100);
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
 }
